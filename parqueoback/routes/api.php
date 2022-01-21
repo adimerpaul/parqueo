@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 Route::resource('/parqueo',\App\Http\Controllers\ParqueoController::class);
+Route::post('/reporte',[\App\Http\Controllers\ParqueoController::class,'reporte']);
