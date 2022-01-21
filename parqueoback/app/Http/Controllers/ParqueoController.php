@@ -95,4 +95,11 @@ class ParqueoController extends Controller
     {
         //
     }
+
+    public function reporte(Request $request){
+        return Parqueo::whereDate('fechaentrada','>=',$request->ini)
+        ->whereDate('fechaentrada','<=',$request->fin)
+        ->where('estado','LIBRE')
+        ->get();
+    }
 }
