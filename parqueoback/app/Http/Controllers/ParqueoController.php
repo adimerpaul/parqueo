@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Parqueo;
 use App\Http\Requests\StoreParqueoRequest;
 use App\Http\Requests\UpdateParqueoRequest;
+use Illuminate\Http\Request;
 
 class ParqueoController extends Controller
 {
@@ -15,7 +16,7 @@ class ParqueoController extends Controller
      */
     public function index()
     {
-        //
+        return Parqueo::where('estado','OCUPADO')->get();
     }
 
     /**
@@ -36,7 +37,17 @@ class ParqueoController extends Controller
      */
     public function store(StoreParqueoRequest $request)
     {
-        //
+        Parqueo::where('placa',$request->placa)->update(['conductor'=>$request->conductor]);
+        $parqueo=new Parqueo();
+        $parqueo->placa=strtoupper($request->placa);
+        $parqueo->conductor=$request->conductor;
+        $parqueo->nivel=$request->nivel;
+        $parqueo->carril=$request->carril;
+        $parqueo->tipo=$request->tipo;
+        $parqueo->operador='PARQUEO';
+        $parqueo->fechaingreso=date('Y-m-d');
+        $parqueo->horaingreso=date('H:i:s');
+        $parqueo->save();
     }
 
     /**

@@ -1,13 +1,11 @@
 <template>
 <q-page class="q-pa-xs">
   <div class="row">
-
-
-    <div class="col-3"><q-input outlined v-model="fecha1" type="date" label="Fecha Ini" /></div>
-    <div class="col-3"><q-input outlined v-model="fecha2" type="date" label="Fecha Fin" /></div>
-     <div class="col-3">
-        <q-btn label="Generar" @click="generar()" color="primary"/>
-      </div>
+    <div class="col-4"><q-input dense class="q-pa-xs" outlined v-model="fecha1" type="date" label="Fecha Ini" /></div>
+    <div class="col-4"><q-input dense class="q-pa-xs" outlined v-model="fecha2" type="date" label="Fecha Fin" /></div>
+    <div class="col-4 flex flex-center">
+      <q-btn label="Generar" @click="generar()" icon="print" color="primary"/>
+    </div>
   </div>
 
 
@@ -28,8 +26,10 @@ export default {
   },
   created() {
   },
-  method:{
+  methods:{
     generar(){
+      // console.log('a')
+      // return false
       let mc=this
       function header(){
         var img = new Image()
