@@ -6,32 +6,106 @@
 <!--      style="width: 200px; height: 200px"-->
 <!--    >-->
     <div class="row">
-      <div class="col-2">
-        <q-badge color="teal" class="full-width">SOTANO</q-badge>
-        <q-list style="padding: 0px;margin: 0px;border: 0px" dense bordered class="rounded-borders">
-          <q-item style="padding: 0px;margin: 0px;border: 0px" v-for="(c,i) in carriles" :key="i" v-ripple :class="c.estado?'bg-red-6':''">
-            <q-item-section style="padding: 0px;margin: 0px;border: 0px" v-if="i=>0 && i<53">
-              <q-checkbox style="padding: 0px;margin: 0px;border: 0px" @update:model-value="cambio(c)"  v-model="c.estado" :label="(i+1).toString()" left-label />
-            </q-item-section>
-            <q-item-section style="padding: 0px;margin: 0px;border: 0px">
-              <q-item-label style="padding: 0px;margin: 0px;border: 0px">
-                {{c.placa}}
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
+      <div class="col-11">
+        <div class="row">
+          <div class="col-2">
+            <q-badge color="warning" class="full-width">SOTANO</q-badge>
+            <!--        <q-list style="padding: 0px;margin: 0px;border: 0px;height: 10px" dense bordered class="rounded-borders">-->
+            <!--          <q-item style="padding: 0px;margin: 0px;border: 0px;height: 10px" v-for="(c,i) in carriles" :key="i" v-ripple :class="c.estado?'bg-red-6':''">-->
+            <!--            <q-item-section style="padding: 0px;margin: 0px;border: 0px;height: 10px" v-if="c.carril>=0 && c.carril<=53">-->
+            <!--              <q-checkbox style="padding: 0px;margin: 0px;border: 0px;height: 10px" @update:model-value="cambio(c)"  v-model="c.estado" :label="(i+1).toString()" left-label />-->
+            <!--            </q-item-section>-->
+            <!--            <q-item-section style="padding: 0px;margin: 0px;border: 0px;height: 10px">-->
+            <!--              <q-item-label style="padding: 0px;margin: 0px;border: 0px;height: 10px">-->
+            <!--                {{c.placa}}-->
+            <!--              </q-item-label>-->
+            <!--            </q-item-section>-->
+            <!--          </q-item>-->
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=0 && c.carril<=53" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <!--              @update:model-value="cambio(c)"-->
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+            <!--        </q-list>-->
+          </div>
+          <div class="col-2">
+            <q-badge color="warning" class="full-width">PLATA BAJA</q-badge>
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=54 && c.carril<=74" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <q-badge color="warning" class="full-width">PRIMER PISO</q-badge>
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=75 && c.carril<=101" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <q-badge color="warning" class="full-width">SEGUNDO PISO</q-badge>
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=102 && c.carril<=151" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <q-badge color="warning" class="full-width">TERCER PISO</q-badge>
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=152 && c.carril<=201" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <q-badge color="warning" class="full-width">CUARTO PISO</q-badge>
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=202 && c.carril<=251" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="row">
+          <div class="col-12">
+            <q-badge color="warning" class="full-width">MOTOCICLETAS</q-badge>
+            <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
+              <div v-if="c.carril>=252 && c.carril<=269" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
+                <b>{{c.carril}}</b>
+                <input type="checkbox" @click="cambio(c)"  v-model="c.estado" checked>
+                <b>{{c.placa}}</b>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <q-dialog v-model="insertar">
+
+    <q-dialog v-model="modalinsertar" persistent>
       <q-card >
-<!--        style="width: 700px; max-width: 80vw;"-->
         <q-card-section>
           <div class="text-h6">REGISTRO INGRESO DE VEHICULOS</div>
         </q-card-section>
         <q-form @submit="crear">
         <q-card-section class="q-pt-none">
-<!--          Click/Tap on the backdrop.-->
-<!--          <pre>{{carril}}</pre>-->
           <q-input required @keyup="buscar" ref="placa" outlined label="placa" v-model="carril.placa" dense style="text-transform: uppercase" />
           <q-input required outlined label="conductor" v-model="carril.conductor" dense />
           <q-input outlined label="carril" v-model="carril.carril" dense />
@@ -41,10 +115,37 @@
           <q-select :options="['HORAS']" outlined label="tipo" v-model="carril.tipo" dense />
         </q-card-section>
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="CANCELAR" @click="this.carril.estado=false;this.carril.placa='';this.carril.conductor='';this.insertar=false" color="negative" icon="delete"></q-btn>
-<!--          <q-btn flat label="CREAR" v-close-popup icon="send"/>-->
+          <q-btn flat label="CANCELAR" @click="this.carril.estado=false;this.carril.placa='';this.carril.conductor='';this.modalinsertar=false" color="negative" icon="delete"></q-btn>
           <q-btn flat label="CREAR"  icon="send" type="submit"/>
         </q-card-actions>
+        </q-form>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="modalmodificar" persistent>
+      <q-card >
+        <q-card-section>
+          <div class="text-h6">REGISTRO SALIDA DE VEHICULOS</div>
+        </q-card-section>
+        <q-form @submit="modificar">
+          <q-card-section class="q-pt-none">
+            <q-input required disable ref="placa" outlined label="placa" v-model="carril.placa" dense style="text-transform: uppercase" />
+            <q-input required outlined label="conductor" v-model="carril.conductor" dense />
+            <q-input outlined label="carril" v-model="carril.carril" dense />
+            <q-input outlined label="nivel" v-model="carril.nivel" dense />
+            <q-input outlined label="fechaingreso" v-model="carril.fechaingreso" dense />
+            <q-input outlined label="horaingreso" v-model="carril.horaingreso" dense />
+            <q-select :options="['HORAS']" outlined label="tipo" v-model="carril.tipo" dense />
+            <q-input outlined label="fechasalida" v-model="carril.fechasalida" dense />
+            <q-input outlined label="horasalida" v-model="carril.horasalida" dense />
+            <q-input outlined label="horas" v-model="carril.horas" dense />
+            <q-input color="info"  bg-color="info" outlined label="bs" v-model="carril.bs" dense />
+          </q-card-section>
+          <q-card-actions align="right" class="bg-white text-teal">
+            <q-btn flat label="Reimprimir" @click="reimprimir()" color="info" icon="print" type="button"/>
+            <q-btn flat label="CANCELAR" @click="this.modalmodificar=false;misdatos()" color="negative" icon="delete"></q-btn>
+            <q-btn flat label="Salida" color="warning" icon="send" type="submit"/>
+          </q-card-actions>
         </q-form>
       </q-card>
     </q-dialog>
@@ -56,7 +157,8 @@ import { date } from 'quasar'
 export default {
   data(){
     return{
-      insertar:false,
+      modalinsertar:false,
+      modalmodificar:false,
       carriles:[
         {carril:1,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:2,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
@@ -160,6 +262,174 @@ export default {
         {carril:99,tipo:'HORAS',conductor:'',nivel:'1°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:100,tipo:'HORAS',conductor:'',nivel:'1°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:101,tipo:'HORAS',conductor:'',nivel:'1°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:102,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:103,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:104,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:105,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:106,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:107,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:108,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:109,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:110,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:111,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:112,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:113,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:114,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:115,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:116,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:117,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:118,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:119,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:120,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:121,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:122,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:123,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:124,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:125,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:126,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:127,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:128,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:129,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:130,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:131,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:132,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:133,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:134,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:135,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:136,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:137,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:138,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:139,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:140,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:141,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:142,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:143,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:144,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:145,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:146,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:147,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:148,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:149,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:150,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:151,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:152,tipo:'HORAS',conductor:'',nivel:'2°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:153,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:154,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:155,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:156,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:157,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:158,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:159,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:160,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:161,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:162,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:163,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:164,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:165,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:166,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:167,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:168,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:169,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:170,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:171,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:172,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:173,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:174,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:175,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:176,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:177,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:178,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:179,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:180,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:181,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:182,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:183,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:184,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:185,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:186,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:187,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:188,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:189,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:190,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:191,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:192,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:193,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:194,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:195,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:196,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:197,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:198,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:199,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:200,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:201,tipo:'HORAS',conductor:'',nivel:'3°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:202,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:203,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:204,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:205,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:206,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:207,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:208,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:209,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:210,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:211,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:212,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:213,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:214,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:215,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:216,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:217,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:218,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:219,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:220,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:221,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:222,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:223,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:224,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:225,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:226,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:227,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:228,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:229,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:230,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:231,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:232,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:233,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:234,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:235,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:236,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:237,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:238,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:239,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:240,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:241,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:242,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:243,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:244,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:245,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:246,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:247,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:248,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:249,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:250,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:251,tipo:'HORAS',conductor:'',nivel:'4°',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:252,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:253,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:254,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:255,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:256,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:257,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:258,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:259,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:260,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:261,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:262,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:263,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:264,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:265,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:266,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:267,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:268,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:269,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
       ],
       carril:{}
     }
@@ -169,22 +439,53 @@ export default {
   },
   methods:{
     misdatos(){
+      this.$q.loading.show()
       this.$api.get('/parqueo').then(res=>{
-        console.log(res.data)
+        this.$q.loading.hide()
+        // console.log(res.data)
         this.carriles.forEach(c=>{
           let found = res.data.find(r => r.carril ==  c.carril);
           if (found!=undefined){
             c.estado=true
             c.placa=found.placa
+          }else{
+              // c.tipo='HORAS'
+              // c.conductor=''
+              c.estado=false
+              c.placa=''
           }
         })
       })
     },
+    reimprimir(){
+      this.$api.get('/boleta/'+this.carril.id).then(res=>{
+        let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
+        myWindow.document.write(res.data);
+        myWindow.document.close();
+        myWindow.print();
+        myWindow.close();
+        // this.misdatos()
+      })
+    },
     crear(){
-      // console.log(this.carril)
+      this.$q.loading.show()
       this.$api.post('/parqueo',this.carril).then(res=>{
+        this.modalinsertar=false
         // console.log(res.data)
-        this.insertar=false
+        let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
+        myWindow.document.write(res.data);
+        myWindow.document.close();
+        myWindow.print();
+        myWindow.close();
+        this.misdatos()
+      })
+    },
+    modificar(){
+      this.$q.loading.show()
+      this.$api.put('/parqueo/'+this.carril.id,this.carril).then(res=>{
+        this.modalmodificar=false
+        this.carril={}
+        this.misdatos()
       })
     },
     buscar(){
@@ -198,15 +499,27 @@ export default {
     },
     cambio(carril){
       this.carril=carril
-      this.carril.fechaingreso=date.formatDate(Date.now(),'YYYY-MM-DD')
-      this.carril.horaingreso=date.formatDate(Date.now(),'HH:mm:ss')
+      console.log(carril)
       if (!carril.estado){
+        this.carril.fechaingreso=date.formatDate(Date.now(),'YYYY-MM-DD')
+        this.carril.horaingreso=date.formatDate(Date.now(),'HH:mm:ss')
         this.$nextTick(() => {
           setTimeout(() => {
             this.$refs.placa.$el.focus()
           }, 20)
         })
-        this.insertar=true
+        this.modalinsertar=true
+      }else{
+        this.$q.loading.show()
+        this.$api.get('/parqueo/'+this.carril.carril+'/edit').then(res=>{
+          // if (res.data.length>0){
+          //   this.carril.conductor=res.data[0].conductor
+          // }
+          console.log(res.data)
+          this.$q.loading.hide()
+          this.carril=res.data
+          this.modalmodificar=true
+        })
       }
     }
   }

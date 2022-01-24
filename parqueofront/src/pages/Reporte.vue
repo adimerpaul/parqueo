@@ -16,6 +16,7 @@
 import { date } from 'quasar';
 import {jsPDF} from "jspdf";
 import $ from "jquery";
+import numero from "numeros_a_letras"
 export default {
   name:"Reporte",
   data(){
@@ -26,6 +27,7 @@ export default {
       }
   },
   created() {
+    // console.log(numero(45))
   },
   methods:{
     generar(){
@@ -57,7 +59,7 @@ export default {
         doc.setFont(undefined,'normal')
         doc.text(0.5, 3, '________________________________________________________________________________________________________' )
         doc.setFont(undefined,'bold')
-        doc.text(0.5, 3.7, 'Nro.' )
+        doc.text(0.3, 3.7, 'Nro.' )
         doc.text(1.5,  3.7, 'FECHA' )
         doc.text(3, 3.7, 'PLACA' )
         doc.text(4.5, 3.7, 'CONDUCTOR' )
@@ -65,10 +67,10 @@ export default {
         doc.text(9, 3.7, 'CARRIL' )
         doc.text(11, 3.7, 'ING. HRS.' )
         doc.text(13, 3.7, 'SAL. HRS.' )
-        doc.text(16, 3.7, 'TIPO' )
-        doc.text(17, 3.7, 'HRS' )
-        doc.text(18, 3.7, 'MONTO' )
-        doc.text(19, 3.7, 'OPERADOR' )
+        doc.text(16.5, 3.7, 'TIPO' )
+        doc.text(17.5, 3.7, 'HRS' )
+        doc.text(18.5, 3.7, 'MONTO' )
+        doc.text(19.5, 3.7, 'OPERADOR' )
         doc.setFont(undefined,'normal')
 
         doc.text(0.5, 3.7, '________________________________________________________________________________________________________' )
@@ -76,35 +78,41 @@ export default {
       var doc = new jsPDF('p','cm','letter')
       // console.log(dat);
       doc.setFont("courier");
-       var x=0,y=4.5
+       var x=0,y=4
         doc.setFontSize(9);
       header()
       let i=0
-        doc.setFontSize(8);
-
+      let suma=0
       this.info.forEach(elem => {
-        console.log(elem)
+        doc.setFontSize(8);
+        // console.log(elem)
         i++;
-        doc.text(0.5, y, i+'' )
+        doc.text(0.3, y, i+'' )
         doc.text(1,  y, elem.fechaingreso)
         doc.text(3, y, elem.placa)
         doc.text(4.5, y, elem.conductor)
-        doc.text(8.5, y, elem.nivel)
+        doc.text(8, y, elem.nivel)
         doc.text(9, y, elem.carril+'')
         doc.text(9.5, y, elem.fechaingreso +' ' +elem.horaingreso )
         doc.text(13, y, elem.fechasalida +' ' +elem.horasalida )
         doc.text(16.5, y, elem.tipo)
-        doc.text(17, y, elem.horas+'')
-        doc.text(18, y, elem.bs+'')
-        doc.text(19, y, elem.operador)
+        doc.text(17.5, y, elem.horas+'')
+        doc.text(18.5, y, elem.bs+'')
+        doc.text(19.5, y, elem.operador)
         y=y+0.3;
-       if (y+3>25){
+        suma=suma+parseInt(elem.bs)
+       if (y+3>30){
           doc.addPage();
           header()
           y=4
         }
-
+        // i++
       });
+
+      doc.text(0.5, y-0.3, '__________________________________________________________________________________________________________________' )
+        doc.setFontSize(10);
+        doc.setFont(undefined,'bold')
+      doc.text(1,y,'Son:        '+numero(suma)+'  0/100 Bs                   TOTAL RECAUDACIÓN   '+suma+' Bs.');
 
       window.open(doc.output('bloburl'), '_blank');
       })

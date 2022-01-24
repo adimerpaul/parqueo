@@ -21,8 +21,8 @@ class CreateParqueosTable extends Migration
             $table->integer("carril")->nullable();
             $table->date("fechaingreso")->nullable();
             $table->time("horaingreso")->nullable();
-            $table->string("fechasalida")->nullable();
-            $table->timw("horasalida")->nullable();
+            $table->date("fechasalida")->nullable();
+            $table->time("horasalida")->nullable();
             $table->string("tipo")->nullable();
             $table->integer("horas")->nullable();
             $table->double("bs")->nullable();

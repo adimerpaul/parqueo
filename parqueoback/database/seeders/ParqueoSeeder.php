@@ -26,7 +26,7 @@ class ParqueoSeeder extends Seeder
             "tipo"=>"HORAS",
 //            "horas"=>"10",
 //            "bs"=>"10",
-            "operador"=>"PARQUE",
+            "operador"=>"PARQUEO",
             "estado"=>"OCUPADO",
         ]);
     }
