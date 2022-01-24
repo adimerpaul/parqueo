@@ -112,7 +112,7 @@
           <q-input outlined label="nivel" v-model="carril.nivel" dense />
           <q-input outlined label="fechaingreso" v-model="carril.fechaingreso" dense />
           <q-input outlined label="horaingreso" v-model="carril.horaingreso" dense />
-          <q-select :options="['HORAS']" outlined label="tipo" v-model="carril.tipo" dense />
+          <q-select :options="['HORAS','JORNADA(07:00 A 23:00)','MEDIA JORNADA(07:00 A 15:00)','MEDIA JORNADA(15:00 A 23:00)','NOCTURNO(23:00 A 07:00)','OFICIAL']" outlined label="tipo" v-model="carril.tipo" dense />
         </q-card-section>
         <q-card-actions align="right" class="bg-white text-teal">
           <q-btn flat label="CANCELAR" @click="this.carril.estado=false;this.carril.placa='';this.carril.conductor='';this.modalinsertar=false" color="negative" icon="delete"></q-btn>
@@ -483,6 +483,8 @@ export default {
     modificar(){
       this.$q.loading.show()
       this.$api.put('/parqueo/'+this.carril.id,this.carril).then(res=>{
+        // console.log(res.data)
+        // return false
         this.modalmodificar=false
         this.carril={}
         this.misdatos()

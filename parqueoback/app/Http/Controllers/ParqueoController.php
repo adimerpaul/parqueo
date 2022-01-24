@@ -37,10 +37,10 @@ class ParqueoController extends Controller
      */
     public function store(StoreParqueoRequest $request)
     {
-        Parqueo::where('placa',$request->placa)->update(['conductor'=>$request->conductor]);
+        Parqueo::where('placa',$request->placa)->update(['conductor'=>strtoupper($request->conductor)]);
         $parqueo=new Parqueo();
         $parqueo->placa=strtoupper($request->placa);
-        $parqueo->conductor=$request->conductor;
+        $parqueo->conductor=strtoupper($request->conductor);
         $parqueo->nivel=$request->nivel;
         $parqueo->carril=$request->carril;
         $parqueo->tipo=$request->tipo;
@@ -55,7 +55,7 @@ class ParqueoController extends Controller
         $cadena='<table style="width: 100%;font-size: 12px">
             <tr>
                 <td style="width: 50%">
-                   <table style="width: 100%;font-size: 12px">
+                   <table style="width: 100%;font-size: 12px" border="1">
                    <tr>
                    <td colspan="2" style=" text-align: center;font-weight: bold;font-size: 12px">
                         GOBIERNO AUTONOMO MUNICIPAL DE ORURO <br>
@@ -111,9 +111,59 @@ class ParqueoController extends Controller
         $parqueo->horasalida=date('H:i:s');
         $fecha1 = new DateTime($parqueo->fechaingreso.' '.$parqueo->horaingreso);//fecha inicial
         $fecha2 = new DateTime($parqueo->fechasalida.' '.$parqueo->horasalida);//fecha de cierre
+
         $intervalo = $fecha1->diff($fecha2);
-        $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
-        $bs=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+
+        if ($parqueo->tipo=='HORAS'){
+            $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            $bs=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+        }elseif ($parqueo->tipo=='JORNADA(07:00 A 23:00)'){
+            $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            $bs=10;
+//            if ($horas>16){
+//                $bs=$bs+$horas-16;
+//            }
+            $fechalimite=new DateTime($parqueo->fechaingreso.' 23:00:00');
+//            return  $parqueo->fechaingreso.' 23:00:00';
+//            exit;
+            if ($fecha2>$fechalimite){
+                $intervalo = $fechalimite->diff($fecha2);
+                $bs=$bs+$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            }
+        }elseif ($parqueo->tipo=='MEDIA JORNADA(07:00 A 15:00)'){
+            $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            $bs=5;
+            $fechalimite=new DateTime($parqueo->fechaingreso.' 15:00:00');
+            if ($fecha2>$fechalimite){
+                $intervalo = $fechalimite->diff($fecha2);
+                $bs=$bs+$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            }
+        }elseif ($parqueo->tipo=='MEDIA JORNADA(15:00 A 23:00)'){
+            $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            $bs=5;
+            $fechalimite=new DateTime($parqueo->fechaingreso.' 23:00:00');
+            if ($fecha2>$fechalimite){
+                $intervalo = $fechalimite->diff($fecha2);
+                $bs=$bs+$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            }
+        }elseif ($parqueo->tipo=='NOCTURNO(23:00 A 07:00)'){
+            $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            $bs=10;
+            $fechalimite=new DateTime($parqueo->fechaingreso.' 07:00:00 + 1 days',);
+            if ($fecha2>$fechalimite){
+                $intervalo = $fechalimite->diff($fecha2);
+                $bs=$bs+$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            }
+        }elseif ($parqueo->tipo=='OFICIAL'){
+            $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+            $bs=0;
+//            $fechalimite=date($parqueo->fechaingreso.' 07:00:00 + 1 days',);
+//            if ($fecha2>$fechalimite){
+//                $intervalo = $fechalimite->diff($fecha2);
+//                $bs=$bs+$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
+//            }
+        }
+
         $parqueo->horas=$horas;
         $parqueo->bs=$bs;
         $parqueo->estado='LIBRE';
@@ -158,8 +208,8 @@ class ParqueoController extends Controller
         //
     }
     public function reporte(Request $request){
-        return Parqueo::whereDate('fechaingreso','>=',$request->ini)
-            ->whereDate('fechaingreso','<=',$request->fin)
+        return Parqueo::whereDate('fechasalida','>=',$request->ini)
+            ->whereDate('fechasalida','<=',$request->fin)
             ->where('estado','LIBRE')
             ->get();
     }
