@@ -7,6 +7,8 @@ use App\Http\Requests\StoreParqueoRequest;
 use App\Http\Requests\UpdateParqueoRequest;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Support\Facades\DB;
+
 class ParqueoController extends Controller
 {
     /**
@@ -210,7 +212,12 @@ class ParqueoController extends Controller
     public function reporte(Request $request){
         return Parqueo::whereDate('fechasalida','>=',$request->ini)
             ->whereDate('fechasalida','<=',$request->fin)
+            ->where('user_id',$request->id)
             ->where('estado','LIBRE')
             ->get();
+    }
+
+    public function listuser(){
+        return DB::SELECT('SELECT id,name,username from users where date(fechalimite)>=CURDATE()');
     }
 }

@@ -3,6 +3,8 @@
   <div class="row">
     <div class="col-4"><q-input dense class="q-pa-xs" outlined v-model="fecha1" type="date" label="Fecha Ini" /></div>
     <div class="col-4"><q-input dense class="q-pa-xs" outlined v-model="fecha2" type="date" label="Fecha Fin" /></div>
+    <div class="col-4"><q-select dense class="q-pa-xs" outlined v-model="user" :options="usuarios" label="Usuarios" /></div>
+
     <div class="col-4 flex flex-center">
       <q-btn label="Generar" @click="generar()" icon="print" color="primary"/>
     </div>
@@ -23,16 +25,27 @@ export default {
     return{
       fecha1:date.formatDate(Date.now(),'YYYY-MM-DD'),
       fecha2:date.formatDate(Date.now(),'YYYY-MM-DD'),
-      info:[]
+      info:[],
+      usuarios:[],
+      user:{}
       }
   },
   created() {
     // console.log(numero(45))
+    this.misusuarios()
   },
   methods:{
+    misusuarios(){
+      this.$axios.get(process.env.API+'/listuser').then(res=>{
+        res.data.forEach(element => {
+          this.usuarios.push({label:element.name,id:element.id});
+        });
+        this.user=this.usuarios[0]
+      })
+    },
     generar(){
       let mc=this
-      this.$axios.post(process.env.API+'/reporte',{ini:mc.fecha1,fin:mc.fecha2}).then(res=>{
+      this.$axios.post(process.env.API+'/reporte',{ini:mc.fecha1,fin:mc.fecha2,id:this.user.id}).then(res=>{
         console.log(res.data)
         this.info=res.data
         //console.log(mc.info)
