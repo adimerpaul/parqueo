@@ -17,7 +17,15 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-Route::resource('/parqueo',\App\Http\Controllers\ParqueoController::class);
-Route::post('/reporte',[\App\Http\Controllers\ParqueoController::class,'reporte']);
-Route::get('/boleta/{id}',[\App\Http\Controllers\ParqueoController::class,'boleta']);
-Route::get('/listuser',[\App\Http\Controllers\ParqueoController::class,'listuser']);
+
+Route::post('/login',[\App\Http\Controllers\UserController::class,'login']);
+
+
+Route::group(['middleware'=>'auth:sanctum'],function (){
+    Route::post('/me',[\App\Http\Controllers\UserController::class,'me']);
+    Route::post('/logout',[\App\Http\Controllers\UserController::class,'logout']);
+    Route::resource('/parqueo',\App\Http\Controllers\ParqueoController::class);
+    Route::post('/reporte',[\App\Http\Controllers\ParqueoController::class,'reporte']);
+    Route::get('/boleta/{id}',[\App\Http\Controllers\ParqueoController::class,'boleta']);
+    Route::get('/listuser',[\App\Http\Controllers\ParqueoController::class,'listuser']);
+});

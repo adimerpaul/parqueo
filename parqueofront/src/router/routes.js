@@ -1,11 +1,15 @@
-
+import Login from 'pages/Login'
+import Reporte from "pages/Reporte";
+import Index from "src/pages";
+import MainLayout from "layouts/MainLayout";
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => MainLayout,
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: '/reporte',component:() => import('pages/Reporte.vue') }
+      { path: '', component: Index,meta: {requiresAuth: true} },
+      { path: '/reporte',component:Reporte,meta: {requiresAuth: true} },
+      { path: '/login',component:Login}
     ]
   },
 
