@@ -7,7 +7,7 @@
 export default function () {
   return {
     status: '',
-    token: localStorage.getItem('token') || '',
+    token: localStorage.getItem('tokenparqueo') || '',
     user : {},
     // pedido:[],
     // usuarios:false,
