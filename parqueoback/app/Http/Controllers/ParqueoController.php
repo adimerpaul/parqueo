@@ -212,7 +212,7 @@ class ParqueoController extends Controller
     public function reporte(Request $request){
         return Parqueo::whereDate('fechasalida','>=',$request->ini)
             ->whereDate('fechasalida','<=',$request->fin)
-            ->where('user_id',$request->id)
+            ->where('operador',$request->username)
             ->where('estado','LIBRE')
             ->get();
     }

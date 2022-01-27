@@ -36,16 +36,16 @@ export default {
   },
   methods:{
     misusuarios(){
-      this.$axios.get(process.env.API+'/listuser').then(res=>{
+      this.$api.get('listuser').then(res=>{
         res.data.forEach(element => {
-          this.usuarios.push({label:element.name,id:element.id});
+          this.usuarios.push({label:element.name,id:element.username});
         });
         this.user=this.usuarios[0]
       })
     },
     generar(){
       let mc=this
-      this.$axios.post(process.env.API+'/reporte',{ini:mc.fecha1,fin:mc.fecha2,id:this.user.id}).then(res=>{
+      this.$api.post('reporte',{ini:mc.fecha1,fin:mc.fecha2,username:this.user.username}).then(res=>{
         console.log(res.data)
         this.info=res.data
         //console.log(mc.info)
