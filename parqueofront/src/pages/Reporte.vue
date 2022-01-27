@@ -36,16 +36,18 @@ export default {
   },
   methods:{
     misusuarios(){
+      this.usuarios=[{label:'TODOS',username  :'TODOS0'}];
       this.$api.get('listuser').then(res=>{
         res.data.forEach(element => {
-          this.usuarios.push({label:element.name,id:element.username});
+          this.usuarios.push({label:element.name,username:element.username});
         });
         this.user=this.usuarios[0]
       })
     },
     generar(){
       let mc=this
-      this.$api.post('reporte',{ini:mc.fecha1,fin:mc.fecha2,username:this.user.username}).then(res=>{
+      console.log(mc.user.username)
+      this.$api.post('reporte',{ini:mc.fecha1,fin:mc.fecha2,username:mc.user.username}).then(res=>{
         console.log(res.data)
         this.info=res.data
         //console.log(mc.info)
@@ -91,7 +93,7 @@ export default {
       }
       var doc = new jsPDF('p','cm','letter')
       // console.log(dat);
-        doc.addFont('ArialMS', 'Arial', 'normal');
+       // doc.addFont('ArialMS', 'Arial', 'normal');
         doc.setFont('Arial');
        var x=0,y=4
 

@@ -210,6 +210,12 @@ class ParqueoController extends Controller
         //
     }
     public function reporte(Request $request){
+        if($request->username=='TODOS0')
+        return Parqueo::whereDate('fechasalida','>=',$request->ini)
+        ->whereDate('fechasalida','<=',$request->fin)
+        ->where('estado','LIBRE')
+        ->get();
+        else
         return Parqueo::whereDate('fechasalida','>=',$request->ini)
             ->whereDate('fechasalida','<=',$request->fin)
             ->where('operador',$request->username)
