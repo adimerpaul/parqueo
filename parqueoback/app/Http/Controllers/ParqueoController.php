@@ -46,7 +46,7 @@ class ParqueoController extends Controller
         $parqueo->nivel=$request->nivel;
         $parqueo->carril=$request->carril;
         $parqueo->tipo=$request->tipo;
-        $parqueo->operador='PARQUEO';
+        $parqueo->operador=$request->user()->username;
         $parqueo->fechaingreso=date('Y-m-d');
         $parqueo->horaingreso=date('H:i:s');
         $parqueo->save();

@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
         <q-toolbar-title>
-          Parqueo
+          {{$store.state.login.user.name}}
         </q-toolbar-title>
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
