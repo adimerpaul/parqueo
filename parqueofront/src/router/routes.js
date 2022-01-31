@@ -1,6 +1,6 @@
 import Login from 'pages/Login'
 import Reporte from "pages/Reporte";
-import Index from "pages/Index";
+import Index from "pages/index";
 import MainLayout from "layouts/MainLayout";
 const routes = [
   {
