@@ -1,6 +1,6 @@
-import Login from 'pages/Login'
+import Login from 'pages/Login';
 import Reporte from "pages/Reporte";
-import Index from "pages/index";
+import Index from "pages/Index";
 import MainLayout from "layouts/MainLayout";
 const routes = [
   {
