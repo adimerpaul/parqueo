@@ -55,8 +55,8 @@
 export default {
   data(){
     return{
-      username:'ADM',
-      password:'admin'
+      username:'',
+      password:''
     }
   },
   methods:{
