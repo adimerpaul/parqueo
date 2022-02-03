@@ -5,7 +5,7 @@ import MainLayout from "layouts/MainLayout";
 const routes = [
   {
     path: '/',
-    component: () => MainLayout,
+    component: MainLayout,
     children: [
       { path: '', component: Index,meta: {requiresAuth: true} },
       { path: '/reporte',component:Reporte,meta: {requiresAuth: true} },
