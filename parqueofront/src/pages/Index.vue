@@ -461,9 +461,10 @@ export default {
       this.$api.get('/boleta/'+this.carril.id).then(res=>{
         let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
         myWindow.document.write(res.data);
-        myWindow.document.close();
-        myWindow.print();
-        myWindow.close();
+        setTimeout(function(){
+          myWindow.print();
+          myWindow.close();
+        },500);
         // this.misdatos()
       })
     },
@@ -475,8 +476,10 @@ export default {
         let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
         myWindow.document.write(res.data);
         myWindow.document.close();
-        myWindow.print();
-        myWindow.close();
+        setTimeout(function(){
+          myWindow.print();
+          myWindow.close();
+        },500);
         this.misdatos()
       })
     },
