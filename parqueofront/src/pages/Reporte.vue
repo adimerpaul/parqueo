@@ -1,11 +1,10 @@
 <template>
 <q-page class="q-pa-xs">
   <div class="row">
-    <div class="col-4"><q-input dense class="q-pa-xs" outlined v-model="fecha1" type="date" label="Fecha Ini" /></div>
-    <div class="col-4"><q-input dense class="q-pa-xs" outlined v-model="fecha2" type="date" label="Fecha Fin" /></div>
-    <div class="col-4"><q-select dense class="q-pa-xs" outlined v-model="user" :options="usuarios" label="Usuarios" /></div>
-
-    <div class="col-4 flex flex-center">
+    <div class="col-6"><q-input  class="q-pa-xs" outlined v-model="fecha1" type="date" label="Fecha Ini" /></div>
+    <div class="col-6"><q-input  class="q-pa-xs" outlined v-model="fecha2" type="date" label="Fecha Fin" /></div>
+    <div class="col-6"><q-select  class="q-pa-xs" outlined v-model="user" :options="usuarios" label="Usuarios" /></div>
+    <div class="col-6 flex flex-center">
       <q-btn label="Generar" @click="generar()" icon="print" color="primary"/>
     </div>
   </div>
@@ -128,9 +127,10 @@ export default {
       });
 
       doc.text(0.5, y-0.3, '__________________________________________________________________________________________________________________' )
-        doc.setFontSize(10);
-        doc.setFont(undefined,'bold')
-      doc.text(0.5,y+0.1,'Son: '+numero(suma)+' 0/100 Bs      TOTAL RECAUDACIÓN '+suma+' Bs.');
+      doc.setFontSize(10);
+      doc.setFont(undefined,'bold')
+      doc.text(0.5,y+0.1,'Son: '+numero(suma)+' 0/100 Bs ')
+      doc.text(15,y+0.1,'TOTAL RECAUDACIÓN '+suma+' Bs.');
 
       window.open(doc.output('bloburl'), '_blank');
       })
