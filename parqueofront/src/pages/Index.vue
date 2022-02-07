@@ -9,7 +9,7 @@
       <div class="col-11">
         <div class="row">
           <div class="col-2">
-            <q-badge color="warning" class="full-width">SOTANO</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">SOTANO</q-badge>
             <!--        <q-list style="padding: 0px;margin: 0px;border: 0px;height: 10px" dense bordered class="rounded-borders">-->
             <!--          <q-item style="padding: 0px;margin: 0px;border: 0px;height: 10px" v-for="(c,i) in carriles" :key="i" v-ripple :class="c.estado?'bg-red-6':''">-->
             <!--            <q-item-section style="padding: 0px;margin: 0px;border: 0px;height: 10px" v-if="c.carril>=0 && c.carril<=53">-->
@@ -32,7 +32,7 @@
             <!--        </q-list>-->
           </div>
           <div class="col-2">
-            <q-badge color="warning" class="full-width">PLATA BAJA</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">PLATA BAJA</q-badge>
             <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
               <div v-if="c.carril>=54 && c.carril<=74" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
                 <b>{{c.carril}}</b>
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="col-2">
-            <q-badge color="warning" class="full-width">PRIMER PISO</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">PRIMER PISO</q-badge>
             <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
               <div v-if="c.carril>=75 && c.carril<=101" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
                 <b>{{c.carril}}</b>
@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="col-2">
-            <q-badge color="warning" class="full-width">SEGUNDO PISO</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">SEGUNDO PISO</q-badge>
             <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
               <div v-if="c.carril>=102 && c.carril<=151" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
                 <b>{{c.carril}}</b>
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="col-2">
-            <q-badge color="warning" class="full-width">TERCER PISO</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">TERCER PISO</q-badge>
             <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
               <div v-if="c.carril>=152 && c.carril<=201" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
                 <b>{{c.carril}}</b>
@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="col-2">
-            <q-badge color="warning" class="full-width">CUARTO PISO</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">CUARTO PISO</q-badge>
             <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
               <div v-if="c.carril>=202 && c.carril<=251" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
                 <b>{{c.carril}}</b>
@@ -86,7 +86,7 @@
       <div class="col-1">
         <div class="row">
           <div class="col-12">
-            <q-badge color="warning" class="full-width">MOTOCICLETAS</q-badge>
+            <q-badge class="bg-warning full-width text-black text-bold">MOTOCICLETAS</q-badge>
             <div style="padding: 0px;margin: 0px;border: 0px;font-size: 1em"  v-for="c in carriles" :key="c.carril">
               <div v-if="c.carril>=252 && c.carril<=269" :class="c.estado?'bg-red-5':'bg-green-5'" style="height: 15px;font-size: 1em;border: 0.1px solid grey">
                 <b>{{c.carril}}</b>
@@ -115,8 +115,8 @@
           <q-select :options="['HORAS','JORNADA(07:00 A 23:00)','MEDIA JORNADA(07:00 A 15:00)','MEDIA JORNADA(15:00 A 23:00)','NOCTURNO(23:00 A 07:00)','OFICIAL']" outlined label="tipo" v-model="carril.tipo" dense />
         </q-card-section>
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="CANCELAR" @click="this.carril.estado=false;this.carril.placa='';this.carril.conductor='';this.modalinsertar=false" color="negative" icon="delete"></q-btn>
-          <q-btn flat label="CREAR"  icon="send" type="submit"/>
+          <q-btn label="CANCELAR" @click="this.carril.estado=false;this.carril.placa='';this.carril.conductor='';this.modalinsertar=false" color="negative" icon="delete"></q-btn>
+          <q-btn label="CREAR" color="positive" icon="send" type="submit"/>
         </q-card-actions>
         </q-form>
       </q-card>
@@ -129,22 +129,46 @@
         </q-card-section>
         <q-form @submit="modificar">
           <q-card-section class="q-pt-none">
-            <q-input required disable ref="placa" outlined label="placa" v-model="carril.placa" dense style="text-transform: uppercase" />
-            <q-input required outlined label="conductor" v-model="carril.conductor" dense />
-            <q-input outlined label="carril" v-model="carril.carril" dense />
-            <q-input outlined label="nivel" v-model="carril.nivel" dense />
-            <q-input outlined label="fechaingreso" v-model="carril.fechaingreso" dense />
-            <q-input outlined label="horaingreso" v-model="carril.horaingreso" dense />
-            <q-select :options="['HORAS']" outlined label="tipo" v-model="carril.tipo" dense />
-            <q-input outlined label="fechasalida" v-model="carril.fechasalida" dense />
-            <q-input outlined label="horasalida" v-model="carril.horasalida" dense />
-            <q-input outlined label="horas" v-model="carril.horas" dense />
-            <q-input color="info"  bg-color="info" outlined label="bs" v-model="carril.bs" dense />
+            <div class="row">
+              <div class="col-6">
+                <q-input required disable ref="placa" outlined label="placa" v-model="carril.placa" dense style="text-transform: uppercase" />
+              </div>
+              <div class="col-6">
+                <q-input required outlined label="conductor" v-model="carril.conductor" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="carril" v-model="carril.carril" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="nivel" v-model="carril.nivel" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="fechaingreso" v-model="carril.fechaingreso" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="horaingreso" v-model="carril.horaingreso" dense />
+              </div>
+              <div class="col-6">
+                <q-select :options="['HORAS']" outlined label="tipo" v-model="carril.tipo" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="fechasalida" v-model="carril.fechasalida" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="horasalida" v-model="carril.horasalida" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined label="horas" v-model="carril.horas" dense />
+              </div>
+              <div class="col-6">
+                <q-input color="info"  bg-color="info" outlined label="bs" v-model="carril.bs" dense />
+              </div>
+            </div>
           </q-card-section>
           <q-card-actions align="right" class="bg-white text-teal">
-            <q-btn flat label="Reimprimir" @click="reimprimir()" color="info" icon="print" type="button"/>
-            <q-btn flat label="CANCELAR" @click="this.modalmodificar=false;misdatos()" color="negative" icon="delete"></q-btn>
-            <q-btn flat label="Salida" color="warning" icon="send" type="submit"/>
+            <q-btn label="Reimprimir" @click="reimprimir()" color="info" icon="print" type="button"/>
+            <q-btn label="CANCELAR" @click="this.modalmodificar=false;misdatos()" color="negative" icon="delete"></q-btn>
+            <q-btn label="Salida" color="warning" icon="send" type="submit"/>
           </q-card-actions>
         </q-form>
       </q-card>
