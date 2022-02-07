@@ -13,7 +13,7 @@
         <q-toolbar-title>
           {{$store.state.login.user.name}}
         </q-toolbar-title>
-        <div>Quasar v{{ $q.version }}</div>
+        <div><q-btn @click="logout" icon="logout" label="salir" size="xs" color="negative" /></div>
       </q-toolbar>
     </q-header>
 
