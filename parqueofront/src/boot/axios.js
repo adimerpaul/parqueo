@@ -21,7 +21,7 @@ export default boot(({ app, router, store  }) => {
   if (token) {
     app.config.globalProperties.$api.defaults.headers.common['Authorization'] = 'Bearer '+token
     app.config.globalProperties.$api.post('/me').then(res=>{
-      console.log(res.data);
+      // console.log(res.data);
       // return false;
       // store.state.user=res.data;
       // store().commit('login/auth_success', {token:token,user:res.data})

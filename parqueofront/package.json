@@ -15,6 +15,7 @@
     "core-js": "^3.6.5",
     "jquery": "^3.6.0",
     "jspdf": "^2.5.0",
+    "moment": "^2.29.1",
     "numeros_a_letras": "^1.0.7",
     "quasar": "^2.0.0",
     "vuex": "^4.0.1"

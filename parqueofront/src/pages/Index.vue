@@ -101,7 +101,7 @@
 
     <q-dialog v-model="modalinsertar" persistent>
       <q-card >
-        <q-card-section>
+        <q-card-section class="bg-green text-bold ">
           <div class="text-h6">REGISTRO INGRESO DE VEHICULOS</div>
         </q-card-section>
         <q-form @submit="crear">
@@ -124,7 +124,7 @@
 
     <q-dialog v-model="modalmodificar" persistent>
       <q-card >
-        <q-card-section>
+        <q-card-section class="bg-warning text-bold text-black">
           <div class="text-h6">REGISTRO SALIDA DE VEHICULOS</div>
         </q-card-section>
         <q-form @submit="modificar">
@@ -143,25 +143,25 @@
                 <q-input outlined label="nivel" v-model="carril.nivel" dense />
               </div>
               <div class="col-6">
-                <q-input outlined label="fechaingreso" v-model="carril.fechaingreso" dense />
+                <q-input outlined @keyup="calculosalida" label="fechaingreso" v-model="carril.fechaingreso" dense />
               </div>
               <div class="col-6">
-                <q-input outlined label="horaingreso" v-model="carril.horaingreso" dense />
+                <q-input outlined @keyup="calculosalida" label="horaingreso" v-model="carril.horaingreso" dense />
               </div>
               <div class="col-6">
-                <q-select :options="['HORAS']" outlined label="tipo" v-model="carril.tipo" dense />
+                <q-input outlined disable label="fechasalida" v-model="carril.fechasalida" dense />
               </div>
               <div class="col-6">
-                <q-input outlined label="fechasalida" v-model="carril.fechasalida" dense />
+                <q-input outlined disable label="horasalida" v-model="carril.horasalida" dense />
               </div>
               <div class="col-6">
-                <q-input outlined label="horasalida" v-model="carril.horasalida" dense />
+                <q-select :options="['HORAS','JORNADA(07:00 A 23:00)','MEDIA JORNADA(07:00 A 15:00)','MEDIA JORNADA(15:00 A 23:00)','NOCTURNO(23:00 A 07:00)','OFICIAL']" outlined label="tipo" v-model="carril.tipo" dense />
               </div>
               <div class="col-6">
                 <q-input outlined label="horas" v-model="carril.horas" dense />
               </div>
-              <div class="col-6">
-                <q-input color="info"  bg-color="info" outlined label="bs" v-model="carril.bs" dense />
+              <div class="col-12">
+                <q-input class="bg-red text-bold text-white" outlined label="Monto" v-model="carril.bs" dense />
               </div>
             </div>
           </q-card-section>
@@ -178,6 +178,7 @@
 
 <script>
 import { date } from 'quasar'
+import moment from 'moment'
 export default {
   data(){
     return{
@@ -460,8 +461,19 @@ export default {
   },
   created(){
     this.misdatos();
+
   },
   methods:{
+    calculosalida(){
+      // console.log(this.carril.fechaingreso)
+      // return false
+      var entryHour = moment(this.carril.fechaingreso+' '+this.carril.horaingreso, 'YYYY-MM-DD HH:mm:ss')
+      var exitHour = moment(this.carril.fechasalida+' '+this.carril.horasalida, 'YYYY-MM-DD HH:mm:ss')
+      var duration = parseInt(moment.duration(exitHour.diff(entryHour)).asHours())
+      this.carril.horas=duration+1
+      this.carril.bs=duration+1
+      // console.log( parseInt(duration) );
+    },
     misdatos(){
       this.$q.loading.show()
       this.$api.get('/parqueo').then(res=>{
@@ -528,7 +540,7 @@ export default {
     },
     cambio(carril){
       this.carril=carril
-      console.log(carril)
+      // console.log(carril)
       if (!carril.estado){
         this.carril.fechaingreso=date.formatDate(Date.now(),'YYYY-MM-DD')
         this.carril.horaingreso=date.formatDate(Date.now(),'HH:mm:ss')
@@ -544,7 +556,7 @@ export default {
           // if (res.data.length>0){
           //   this.carril.conductor=res.data[0].conductor
           // }
-          console.log(res.data)
+          // console.log(res.data)
           this.$q.loading.hide()
           this.carril=res.data
           this.modalmodificar=true
