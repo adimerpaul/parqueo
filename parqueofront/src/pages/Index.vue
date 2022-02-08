@@ -134,8 +134,14 @@
                 <q-input required disable ref="placa" outlined label="placa" v-model="carril.placa" dense style="text-transform: uppercase" />
               </div>
               <div class="col-6">
-                <q-input required outlined label="conductor" v-model="carril.conductor" dense />
+                <q-input required outlined label="conductor" v-model="carril.conductor" dense style="text-transform: uppercase"/>
               </div>
+<!--              <div class="col-6">-->
+<!--                <q-input required outlined label="ci" v-model="carril.ci" dense style="text-transform: uppercase"/>-->
+<!--              </div>-->
+<!--              <div class="col-6">-->
+<!--                <q-input required outlined label="celular" v-model="carril.celular" dense style="text-transform: uppercase"/>-->
+<!--              </div>-->
               <div class="col-6">
                 <q-input outlined label="carril" v-model="carril.carril" dense />
               </div>
@@ -166,9 +172,10 @@
             </div>
           </q-card-section>
           <q-card-actions align="right" class="bg-white text-teal">
-            <q-btn label="Reimprimir" @click="reimprimir()" color="info" icon="print" type="button"/>
+            <q-btn label="Salida" @click="reimprimir()" color="info" icon="print" type="button"/>
             <q-btn label="CANCELAR" @click="this.modalmodificar=false;misdatos()" color="negative" icon="delete"></q-btn>
             <q-btn label="Salida" color="warning" icon="send" type="submit"/>
+<!--            <pre>{{carril}}</pre>-->
           </q-card-actions>
         </q-form>
       </q-card>
@@ -224,12 +231,13 @@ export default {
         {carril:37,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:38,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:39,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
-        {carril:40,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        // {carril:40,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:40,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:41,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:42,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:43,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:44,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        {carril:45,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:46,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:47,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:48,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
@@ -238,7 +246,7 @@ export default {
         {carril:51,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:52,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:53,tipo:'HORAS',conductor:'',nivel:'SOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
-        {carril:53,tipo:'HORAS',conductor:'',nivel:'P.B.',estado:false,placa:'',fechaingreso:'',horaingreso:''},
+        // {carril:53,tipo:'HORAS',conductor:'',nivel:'P.B.',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:54,tipo:'HORAS',conductor:'',nivel:'P.B.',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:55,tipo:'HORAS',conductor:'',nivel:'P.B.',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:56,tipo:'HORAS',conductor:'',nivel:'P.B.',estado:false,placa:'',fechaingreso:'',horaingreso:''},
@@ -494,7 +502,7 @@ export default {
       })
     },
     reimprimir(){
-      this.$api.get('/boleta/'+this.carril.id).then(res=>{
+      this.$api.get('/boletasalida/'+this.carril.id+'/'+this.carril.bs+'/'+this.carril.horas).then(res=>{
         let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
         myWindow.document.write(res.data);
         setTimeout(function(){

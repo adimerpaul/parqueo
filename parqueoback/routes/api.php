@@ -27,5 +27,6 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
     Route::resource('/parqueo',\App\Http\Controllers\ParqueoController::class);
     Route::post('/reporte',[\App\Http\Controllers\ParqueoController::class,'reporte']);
     Route::get('/boleta/{id}',[\App\Http\Controllers\ParqueoController::class,'boleta']);
+    Route::get('/boletasalida/{id}/{bs}/{horas}',[\App\Http\Controllers\ParqueoController::class,'boletasalida']);
     Route::get('/listuser',[\App\Http\Controllers\ParqueoController::class,'listuser']);
 });
