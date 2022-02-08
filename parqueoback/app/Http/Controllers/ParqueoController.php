@@ -40,13 +40,19 @@ class ParqueoController extends Controller
      */
     public function store(StoreParqueoRequest $request)
     {
-        Parqueo::where('placa',$request->placa)->update(['conductor'=>strtoupper($request->conductor)]);
+        Parqueo::where('placa',$request->placa)->update([
+            'conductor'=>strtoupper($request->conductor),
+            'ci'=>strtoupper($request->ci),
+            'celular'=>strtoupper($request->celular),
+            ]);
         $parqueo=new Parqueo();
         $parqueo->placa=strtoupper($request->placa);
         $parqueo->conductor=strtoupper($request->conductor);
         $parqueo->nivel=$request->nivel;
         $parqueo->carril=$request->carril;
         $parqueo->tipo=$request->tipo;
+        $parqueo->ci=$request->ci;
+        $parqueo->celular=$request->celular;
         $parqueo->operador=$request->user()->username;
         $parqueo->fechaingreso=date('Y-m-d');
         $parqueo->horaingreso=date('H:i:s');

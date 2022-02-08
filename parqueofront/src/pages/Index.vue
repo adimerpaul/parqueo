@@ -106,12 +106,21 @@
         </q-card-section>
         <q-form @submit="crear">
         <q-card-section class="q-pt-none">
+
           <q-input required @keyup="buscar" ref="placa" outlined label="placa" v-model="carril.placa" dense style="text-transform: uppercase" />
-          <q-input required outlined label="conductor" v-model="carril.conductor" dense />
-          <q-input outlined label="carril" v-model="carril.carril" dense />
-          <q-input outlined label="nivel" v-model="carril.nivel" dense />
-          <q-input outlined label="fechaingreso" v-model="carril.fechaingreso" dense />
-          <q-input outlined label="horaingreso" v-model="carril.horaingreso" dense />
+          <q-input required outlined label="conductor" v-model="carril.conductor" dense style="text-transform: uppercase"  />
+          <div class="row">
+            <div class="col-6">
+              <q-input required outlined label="ci" v-model="carril.ci" dense style="text-transform: uppercase"/>
+            </div>
+            <div class="col-6">
+              <q-input required outlined label="celular" v-model="carril.celular" dense style="text-transform: uppercase"/>
+            </div>
+          </div>
+          <q-input outlined disable label="carril" v-model="carril.carril" dense />
+          <q-input outlined disable label="nivel" v-model="carril.nivel" dense />
+          <q-input outlined disable label="fechaingreso" v-model="carril.fechaingreso" dense />
+          <q-input outlined disable label="horaingreso" v-model="carril.horaingreso" dense />
           <q-select :options="['HORAS','JORNADA(07:00 A 23:00)','MEDIA JORNADA(07:00 A 15:00)','MEDIA JORNADA(15:00 A 23:00)','NOCTURNO(23:00 A 07:00)','OFICIAL']" outlined label="tipo" v-model="carril.tipo" dense />
         </q-card-section>
         <q-card-actions align="right" class="bg-white text-teal">
@@ -136,17 +145,17 @@
               <div class="col-6">
                 <q-input required outlined label="conductor" v-model="carril.conductor" dense style="text-transform: uppercase"/>
               </div>
-<!--              <div class="col-6">-->
-<!--                <q-input required outlined label="ci" v-model="carril.ci" dense style="text-transform: uppercase"/>-->
-<!--              </div>-->
-<!--              <div class="col-6">-->
-<!--                <q-input required outlined label="celular" v-model="carril.celular" dense style="text-transform: uppercase"/>-->
-<!--              </div>-->
               <div class="col-6">
-                <q-input outlined label="carril" v-model="carril.carril" dense />
+                <q-input required outlined label="ci" v-model="carril.ci" dense style="text-transform: uppercase"/>
               </div>
               <div class="col-6">
-                <q-input outlined label="nivel" v-model="carril.nivel" dense />
+                <q-input required outlined label="celular" v-model="carril.celular" dense style="text-transform: uppercase"/>
+              </div>
+              <div class="col-6">
+                <q-input outlined disable label="carril" v-model="carril.carril" dense />
+              </div>
+              <div class="col-6">
+                <q-input outlined disable label="nivel" v-model="carril.nivel" dense />
               </div>
               <div class="col-6">
                 <q-input outlined @keyup="calculosalida" label="fechaingreso" v-model="carril.fechaingreso" dense />
@@ -539,10 +548,13 @@ export default {
     },
     buscar(){
       this.carril.conductor=''
+      if(this.carril.placa!='')
       this.$api.get('/parqueo/'+this.carril.placa).then(res=>{
         // console.log(res.data)
         if (res.data.length>0){
           this.carril.conductor=res.data[0].conductor
+          this.carril.ci=res.data[0].ci
+          this.carril.celular=res.data[0].celular
         }
       })
     },
@@ -564,7 +576,7 @@ export default {
           // if (res.data.length>0){
           //   this.carril.conductor=res.data[0].conductor
           // }
-          // console.log(res.data)
+          console.log(res.data)
           this.$q.loading.hide()
           this.carril=res.data
           this.modalmodificar=true
