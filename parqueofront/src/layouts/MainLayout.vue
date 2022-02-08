@@ -21,10 +21,12 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      :width="150"
+      :breakpoint="400"
     >
       <q-list>
         <q-item-label header>
-          Opciones
+          PARQUEO
         </q-item-label>
 
 <!--        <EssentialLink-->
@@ -37,9 +39,9 @@
             <q-icon name="code" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Registro de vehiculos</q-item-label>
+            <q-item-label>Registro</q-item-label>
             <q-item-label caption>
-              Registro de vehiculos
+              Registro
             </q-item-label>
           </q-item-section>
         </q-item>
@@ -48,9 +50,9 @@
             <q-icon name="list" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Reporte de vehiculos</q-item-label>
+            <q-item-label>Reporte</q-item-label>
             <q-item-label caption>
-              Reporte de vehiculos
+              Reporte
             </q-item-label>
           </q-item-section>
         </q-item>
@@ -61,7 +63,7 @@
           <q-item-section>
             <q-item-label>Salir</q-item-label>
             <q-item-label caption>
-              Salir del sistema
+              Salir
             </q-item-label>
           </q-item-section>
         </q-item>
