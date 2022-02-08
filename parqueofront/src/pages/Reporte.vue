@@ -107,7 +107,7 @@ export default {
         doc.text(0.3, y, i+'' )
         doc.text(1,  y, elem.fechasalida)
         doc.text(3, y, elem.placa)
-        doc.text(4.7, y, elem.conductor)
+        doc.text(4.7, y, elem.conductor.substr(0,15))
         doc.text(8, y, elem.nivel)
         doc.text(9, y, elem.carril+'')
         doc.text(9.5, y, elem.fechaingreso +' ' +elem.horaingreso )
