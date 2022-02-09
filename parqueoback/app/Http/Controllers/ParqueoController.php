@@ -273,6 +273,7 @@ class ParqueoController extends Controller
         $horas=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
 //        $bs=$intervalo->y*365*24+$intervalo->m*30*24+$intervalo->d*24+$intervalo->h+1;
         $parqueo->horas=$horas;
+        $parqueo->operador=$request->user()->username;
         $parqueo->bs=$request->bs;
         $parqueo->estado='LIBRE';
         $parqueo->save();
