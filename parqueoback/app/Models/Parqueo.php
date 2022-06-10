@@ -17,5 +17,7 @@ class Parqueo extends Model
         'horaingreso',
         'fechasalida',
         'horasalida',
+        'ci',
+        'celular'
     ];
 }

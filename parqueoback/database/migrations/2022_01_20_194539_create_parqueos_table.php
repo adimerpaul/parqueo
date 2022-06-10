@@ -24,6 +24,8 @@ class CreateParqueosTable extends Migration
             $table->date("fechasalida")->nullable();
             $table->time("horasalida")->nullable();
             $table->string("tipo")->nullable();
+            $table->string("ci")->nullable();
+            $table->string("celular")->nullable();
             $table->integer("horas")->nullable();
             $table->double("bs")->nullable();
             $table->string("operador")->nullable();

@@ -125,7 +125,7 @@
         </q-card-section>
         <q-card-actions align="right" class="bg-white text-teal">
           <q-btn label="CANCELAR" @click="this.carril.estado=false;this.carril.placa='';this.carril.conductor='';this.modalinsertar=false" color="negative" icon="delete"></q-btn>
-          <q-btn label="CREAR" color="positive" icon="send" type="submit"/>
+          <q-btn label="CREAR" color="positive" icon="send" type="submit" :disable="swBtnCrear"/>
         </q-card-actions>
         </q-form>
       </q-card>
@@ -473,10 +473,12 @@ export default {
         {carril:268,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
         {carril:269,tipo:'HORAS',conductor:'',nivel:'MOT',estado:false,placa:'',fechaingreso:'',horaingreso:''},
       ],
-      carril:{}
+      carril:{},
+      swBtnCrear:false
     }
   },
   created(){
+
     this.misdatos();
 
   },
@@ -522,7 +524,9 @@ export default {
       })
     },
     crear(){
+
       this.$q.loading.show()
+      this.swBtnCrear = true
       this.$api.post('/parqueo',this.carril).then(res=>{
         this.modalinsertar=false
         // console.log(res.data)
@@ -532,8 +536,10 @@ export default {
         setTimeout(function(){
           myWindow.print();
           myWindow.close();
+          
         },500);
         this.misdatos()
+        this.swBtnCrear = false
       })
     },
     modificar(){
